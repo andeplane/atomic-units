@@ -3,7 +3,7 @@
 class AUTime : public Unit<AtomicUnit<0,1,0,0> >
 {
 public:
-    constexpr static const double siFactor = 5.2917721092e-11;
+    constexpr static const double siFactor = 2.418884326505e-17;
 
     constexpr AUTime(double d) :
         Unit<AtomicUnit<0,1,0,0> > (d)
@@ -20,4 +20,9 @@ public:
 
 constexpr AUTime operator "" _au_t(long double d) {
     return AUTime(static_cast<double>(d));
+}
+
+std::ostream& operator<< (std::ostream &out, const AUTime &distance) {
+    out << distance.value << " au_t";
+    return out;
 }

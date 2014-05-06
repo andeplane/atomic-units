@@ -15,4 +15,5 @@ HEADERS += \
     compphysunits.h \
     atomicunits/audistance.h \
     atomicunits/atomicunits.h \
-    atomicunits/autime.h
+    atomicunits/autime.h \
+    basestreams.h

@@ -21,3 +21,16 @@ public:
 constexpr AUDistance operator "" _au_L(long double d) {
     return AUDistance(static_cast<double>(d));
 }
+
+std::ostream& operator<< (std::ostream &out, const AUDistance &distance) {
+    out << distance.value << " au_L";
+    return out;
+}
+
+double operator / (Distance distance1, AUDistance distance2) {
+    return distance1.value * AUDistance::siFactor / (distance2.value);
+}
+
+double operator / (AUDistance distance1, Distance distance2) {
+    return distance1.value / (distance2.value * AUDistance::siFactor);
+}

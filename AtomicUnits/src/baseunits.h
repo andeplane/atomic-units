@@ -1,5 +1,6 @@
 #pragma once
 #include <complex>
+
 template<int SIL, int SIt, int SIm, int SIT>
 struct SIUnit {
     enum {m = SIL, kg = SIm, s = SIt, K = SIT};
@@ -35,12 +36,12 @@ public:
 
     double value;
 };
-
-using Acceleration = Unit<SIUnit<1,-2, 0,0>>;
 using Distance = Unit<SIUnit<1,0,0,0>>;
 using Mass = Unit<SIUnit<0,0,1,0>>;
 using Time = Unit<SIUnit<0,1,0,0>>;
 using Temperature = Unit<SIUnit<0,0,0,1>>;
+using Speed = Unit<SIUnit<1,-1,0,0>>;
+using Acceleration = Unit<SIUnit<1,-2, 0,0>>;
 using Energy = Unit<SIUnit<2,-2,2,0>>;
 using Force = Unit<SIUnit<1,-2,1,0>>;
 
@@ -67,3 +68,12 @@ constexpr Energy operator "" _J(long double d) {
 constexpr Force operator "" _N(long double d) {
     return Force(static_cast<double>(d));
 }
+
+double operator / (Distance distance1, Distance distance2) {
+    return distance1.value / distance2.value;
+}
+
+Speed operator /(Distance distance, Time time) {
+    return Speed(distance.value / time.value);
+}
+
